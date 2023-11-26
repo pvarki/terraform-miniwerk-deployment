@@ -44,9 +44,9 @@ should be able to handle by itself.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~>3.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | ~>3.0 |
-| <a name="provider_xkcdpass"></a> [xkcdpass](#provider\_xkcdpass) | ~>1.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.82.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.5.1 |
+| <a name="provider_xkcdpass"></a> [xkcdpass](#provider\_xkcdpass) | 1.0.0 |
 
 ## Modules
 
@@ -76,6 +76,7 @@ No modules.
 | [xkcdpass_generate.kc_ldap_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.kc_mgr_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.postgres_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
+| [xkcdpass_generate.rm_db_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.tak_db_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.tak_jks1_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.tak_jks2_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
