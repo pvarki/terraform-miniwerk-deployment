@@ -10,7 +10,6 @@ authenticate, different authentication schemes are documented [here](https://lea
 After the authentication is completed, the provisioning is done by running:
 
 ```bash
-az login
 terraform init
 terraform apply
 ```

@@ -269,6 +269,11 @@ resource "azurerm_linux_virtual_machine" "this" {
   resource_group_name   = azurerm_resource_group.this.name
   network_interface_ids = [azurerm_network_interface.this.id]
   size                  = var.VM_SIZE
+  depends_on = [
+    azurerm_dns_a_record.this, azurerm_dns_a_record.mtls,
+    azurerm_dns_a_record.fake, azurerm_dns_a_record.mtls_fake,
+    azurerm_dns_a_record.tak, azurerm_dns_a_record.mtls_tak
+  ]
 
   os_disk {
     caching              = "ReadWrite"
