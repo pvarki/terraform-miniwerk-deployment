@@ -1,19 +1,46 @@
 # Terraform config to provision a full RASENMAEHER+TAK in Azure
 
-## FIXME: How to create initial admin login codes
-
-And how to deliver them ?
-
 ## Usage
+
 Provisioning requires Terraform & Azure CLI. Before provisioning you need to
 authenticate, different authentication schemes are documented [here](https://learn.microsoft.com/en-us/azure/developer/terraform/get-started-windows-bash?tabs=bash#5-authenticate-terraform-to-azure).
-After the authentication is completed, the provisioning is done by running:
+
+After the authentication is completed, you must once initialize your local TF state:
 
 ```bash
 terraform init
-terraform apply
 ```
 
+To preserve your sanity create `myname.tfvars` -file with the RSA key you
+use for SSH (needed to get the first time login code):
+
+```bash
+SSH_PUBLIC_KEY = "ssh-rsa REDACTED me@mymachine.local!"
+```
+
+Make sure you have [jq](https://jqlang.github.io/jq/) installed.
+Then to provision a new instance run:
+
+```bash
+terraform workspace new my_deployment
+./tf_wrapper.sh myname.tfvars
+```
+
+Any extra options given to `tf_wrapper.sh` will be passed to `terraform apply`.
+if you like to live dangerously`--auto-approve` is a good one.
+
+The script will then do things, if you didn't add auto-approve TF will ask for confirmation,
+it will then do more things and finally you get a bit more instructions that looke like this:
+
+```
+** Run following curl command to test that at least RASENMAEHER container is up **
+  curl -s https://deployment-name.pvarki.fi/api/v1/healthcheck/services | jq .
+** When curl replies run following SSH command to get the admin login code **
+  ssh azureuser@deployment-name.pvarki.fi 'sudo docker exec rmvm-rmapi-1 /bin/bash -lc "rasenmaeher_api addcode"'
+```
+
+Since TF will return long before cloud-init finishes running you need to use curl to check when RASENMAEHER container
+is actually up, after that it's just a call over SSH to generate admin login code.
 
 ## pre-commit considerations
 
