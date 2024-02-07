@@ -1,19 +1,46 @@
 # Terraform config to provision a full RASENMAEHER+TAK in Azure
 
-## FIXME: How to create initial admin login codes
-
-And how to deliver them ?
-
 ## Usage
+
 Provisioning requires Terraform & Azure CLI. Before provisioning you need to
 authenticate, different authentication schemes are documented [here](https://learn.microsoft.com/en-us/azure/developer/terraform/get-started-windows-bash?tabs=bash#5-authenticate-terraform-to-azure).
-After the authentication is completed, the provisioning is done by running:
+
+After the authentication is completed, you must once initialize your local TF state:
 
 ```bash
 terraform init
-terraform apply
 ```
 
+To preserve your sanity create `myname.tfvars` -file with the RSA key you
+use for SSH (needed to get the first time login code):
+
+```bash
+SSH_PUBLIC_KEY = "ssh-rsa REDACTED me@mymachine.local!"
+```
+
+Make sure you have [jq](https://jqlang.github.io/jq/) installed.
+Then to provision a new instance run:
+
+```bash
+terraform workspace new my_deployment
+./tf_wrapper.sh myname.tfvars
+```
+
+Any extra options given to `tf_wrapper.sh` will be passed to `terraform apply`.
+if you like to live dangerously`--auto-approve` is a good one.
+
+The script will then do things, if you didn't add auto-approve TF will ask for confirmation,
+it will then do more things and finally you get a bit more instructions that looke like this:
+
+```
+** Run following curl command to test that at least RASENMAEHER container is up **
+  curl -s https://deployment-name.pvarki.fi/api/v1/healthcheck/services | jq .
+** When curl replies run following SSH command to get the admin login code **
+  ssh azureuser@deployment-name.pvarki.fi 'sudo docker exec rmvm-rmapi-1 /bin/bash -lc "rasenmaeher_api addcode"'
+```
+
+Since TF will return long before cloud-init finishes running you need to use curl to check when RASENMAEHER container
+is actually up, after that it's just a call over SSH to generate admin login code.
 
 ## pre-commit considerations
 
@@ -88,7 +115,7 @@ No modules.
 | <a name="input_CERTBOT_EMAIL"></a> [CERTBOT\_EMAIL](#input\_CERTBOT\_EMAIL) | Email address to send certificate expiration notifications. | `string` | `"benjam.gronmark_arkiproj@hotmail.com"` | no |
 | <a name="input_DEPLOYMENT_NAME"></a> [DEPLOYMENT\_NAME](#input\_DEPLOYMENT\_NAME) | Set DNS name, if not set will be automatically generated | `string` | `null` | no |
 | <a name="input_DOCKER_COMPOSITION_REPO"></a> [DOCKER\_COMPOSITION\_REPO](#input\_DOCKER\_COMPOSITION\_REPO) | The repo to use to get the docker-composition from | `string` | `"https://github.com/pvarki/docker-rasenmaeher-integration.git"` | no |
-| <a name="input_DOCKER_REPO_TAG"></a> [DOCKER\_REPO\_TAG](#input\_DOCKER\_REPO\_TAG) | The branch/tag in DOCKER\_COMPOSITION\_REPO to use | `string` | `"1.0.0"` | no |
+| <a name="input_DOCKER_REPO_TAG"></a> [DOCKER\_REPO\_TAG](#input\_DOCKER\_REPO\_TAG) | The branch/tag in DOCKER\_COMPOSITION\_REPO to use | `string` | `"1.0.1"` | no |
 | <a name="input_EXPIRES"></a> [EXPIRES](#input\_EXPIRES) | ISO 8601 date (yyyy-mm-dd) after which this resource is cleaned up, defaults to 30days from now | `string` | `null` | no |
 | <a name="input_RESOURCE_GROUP_LOCATION"></a> [RESOURCE\_GROUP\_LOCATION](#input\_RESOURCE\_GROUP\_LOCATION) | Location of the resource group. | `string` | `"northeurope"` | no |
 | <a name="input_RESOURCE_GROUP_NAME_PREFIX"></a> [RESOURCE\_GROUP\_NAME\_PREFIX](#input\_RESOURCE\_GROUP\_NAME\_PREFIX) | Prefix of the resource group name that's combined with a random ID so name is unique in your Azure subscription. | `string` | `"rg-miniwerk"` | no |
