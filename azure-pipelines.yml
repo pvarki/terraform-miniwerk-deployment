@@ -18,7 +18,7 @@ parameters:
   default: false
 - name: RESOURCE_GROUP_NAME_PREFIX
   type: string
-  default: rg-tak
+  default: rg-miniwerk
 - name: DOCKER_COMPOSITION_REPO
   type: string
   default: false
