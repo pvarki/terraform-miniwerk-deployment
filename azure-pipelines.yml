@@ -84,7 +84,7 @@ stages:
               environmentServiceNameAzureRM: FDF-PVARKI-Sub-Service-Connection
 
   - stage: destroy_resources
-    displayName: Destroy ATAK resources
+    displayName: Destroy miniwerk resources
     jobs:
       - job: destroy
         condition: ne(${{ parameters.CREATE }}, 'true')
