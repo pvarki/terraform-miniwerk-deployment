@@ -37,6 +37,8 @@ parameters:
 - name: CERTBOT_EMAIL
   type: string
   default: false
+- name: WORKSPACE_NAME
+  type: string
 - name: CREATE
   type: boolean
   default: true
