@@ -42,6 +42,39 @@ it will then do more things and finally you get a bit more instructions that loo
 Since TF will return long before cloud-init finishes running you need to use curl to check when RASENMAEHER container
 is actually up, after that it's just a call over SSH to generate admin login code.
 
+## Usage with Azure DevOps pipeline
+
+Requires Azure crendentials for PVARKI and access to keyvault *pvarki-shared-kv001*. 
+
+Log in to ```portal.azure.com``` with our PVARKI credentials and use service search and navigate to 
+*AzureDevops organizations*. Go to *My Azure DevOps Organizations* link. Link opens to new tab.
+
+Under projects, navigate to *PVARKI* then to *Pipelines*. Under pipelines, choose pvarki.terraform-miniwerk-deployment.
+There will be warning shown, ignore that. Choose *Run Pipeline*. From *Branch/tag* change branch to *azurepipelines* and 
+variables will be shown. 
+
+To *SSH_PUBLIC_KEY* copy and paste contents of *sshpubkey* (SSH public key). Optionally you can use your own key pair. 
+To *WORKSPACE_NAME* put unique name for your unique name for deployment. Other variables are auto-generated. Click *Run*.
+You can check progress by clicking Create action. When pipeline has ran through, you can check deployment name from 
+*Terraform apply* steps outputs. 
+
+It will take some time after Terraform deployment has completed to all of the containers be up and running. You can check status with:
+
+```
+** Run following curl command to test that at least RASENMAEHER container is up **
+  curl -s https://deployment-name.pvarki.fi/api/v1/healthcheck/services | jq .
+```
+
+Once service reports to be healthy, for admin login code run:
+
+```
+** When curl replies run following SSH command to get the admin login code **
+  ssh azureuser@deployment-name.pvarki.fi 'sudo docker exec rmvm-rmapi-1 /bin/bash -lc "rasenmaeher_api addcode"'
+```
+
+To clean up, run pipeline again with same *WORKSPACE_NAME* and uncheck *CREATE* checkbox. This will run Terraform destroy for said 
+deployment. 
+
 ## pre-commit considerations
 
 We use [pre-commit framework][pc] for various things, most notably it will autogenerate
