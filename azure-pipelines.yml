@@ -74,7 +74,7 @@ stages:
               backendAzureRmResourceGroupName: FDF-PVARKI-common
               backendAzureRmStorageAccountName: arkitfstate
               backendAzureRmContainerName: deliveries
-              backendAzureRmKey: "${{ parameters.RESOURCE_GROUP_NAME_PREFIX }}/${{ parameters.DEPLOYMENT_NAME }}.tfstate"
+              backendAzureRmKey: "${{ parameters.RESOURCE_GROUP_NAME_PREFIX }}/${{ parameters.WORKSPACE_NAME }}.tfstate"
 
           - task: TerraformTaskV3@3
             displayName: Apply Terraform Plan
@@ -107,7 +107,7 @@ stages:
               backendAzureRmResourceGroupName: FDF-PVARKI-common
               backendAzureRmStorageAccountName: arkitfstate
               backendAzureRmContainerName: deliveries
-              backendAzureRmKey: "${{ parameters.RESOURCE_GROUP_NAME_PREFIX }}/${{ parameters.DEPLOYMENT_NAME }}.tfstate"
+              backendAzureRmKey: "${{ parameters.RESOURCE_GROUP_NAME_PREFIX }}/${{ parameters.WORKSPACE_NAME }}.tfstate"
 
           - task: TerraformTaskV3@3
             displayName: Apply Terraform Destroy
