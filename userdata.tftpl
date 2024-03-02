@@ -56,6 +56,7 @@ echo "TAKSERVER_CERT_PASS=${TAKSERVER_CERT_PASS}" >>.env
 echo "TAK_CA_PASS=${TAK_CA_PASS}" >>.env
 source .env
 
+export DOCKER_BUILDKIT=1
 # docker compose is not the same as docker-compose, which is legacy and does not support all things the version without dash does
 echo "** docker compose pull"
 docker compose pull --include-deps --ignore-pull-failures
