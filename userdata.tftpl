@@ -61,7 +61,8 @@ export DOCKER_BUILDKIT=1
 echo "** docker compose pull"
 docker compose pull --include-deps --ignore-pull-failures
 echo "** docker compose up"
-docker compose up -d || docker compose down && docker compose up -d
+set +e
+docker compose up -d || $(docker compose down && docker compose up -d)
 echo "** Check API health"
 curl -s https://${DEPLOYMENT_DNS}/api/v1/healthcheck/services | jq
 echo "DONE"
