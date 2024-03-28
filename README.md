@@ -44,19 +44,19 @@ is actually up, after that it's just a call over SSH to generate admin login cod
 
 ## Usage with Azure DevOps pipeline
 
-Requires Azure crendentials for PVARKI and access to keyvault *pvarki-shared-kv001*. 
+Requires Azure crendentials for PVARKI and access to keyvault *pvarki-shared-kv001*.
 
-Log in to ```portal.azure.com``` with our PVARKI credentials and use service search and navigate to 
+Log in to ```portal.azure.com``` with our PVARKI credentials and use service search and navigate to
 *AzureDevops organizations*. Go to *My Azure DevOps Organizations* link. Link opens to new tab.
 
 Under projects, navigate to *PVARKI* then to *Pipelines*. Under pipelines, choose pvarki.terraform-miniwerk-deployment.
-There will be warning shown, ignore that. Choose *Run Pipeline*. From *Branch/tag* change branch to *azurepipelines* and 
-variables will be shown. 
+There will be warning shown, ignore that. Choose *Run Pipeline*. From *Branch/tag* change branch to *azurepipelines* and
+variables will be shown.
 
-To *SSH_PUBLIC_KEY* copy and paste contents of *sshpubkey* (SSH public key). Optionally you can use your own key pair. 
+To *SSH_PUBLIC_KEY* copy and paste contents of *sshpubkey* (SSH public key). Optionally you can use your own key pair.
 To *WORKSPACE_NAME* put unique name for your unique name for deployment. Other variables are auto-generated. Click *Run*.
-You can check progress by clicking Create action. When pipeline has ran through, you can check deployment name from 
-*Terraform apply* steps outputs. 
+You can check progress by clicking Create action. When pipeline has ran through, you can check deployment name from
+*Terraform apply* steps outputs.
 
 It will take some time after Terraform deployment has completed to all of the containers be up and running. You can check status with:
 
@@ -72,8 +72,8 @@ Once service reports to be healthy, for admin login code run:
   ssh azureuser@deployment-name.pvarki.fi 'sudo docker exec rmvm-rmapi-1 /bin/bash -lc "rasenmaeher_api addcode"'
 ```
 
-To clean up, run pipeline again with same *WORKSPACE_NAME* and uncheck *CREATE* checkbox. This will run Terraform destroy for said 
-deployment. 
+To clean up, run pipeline again with same *WORKSPACE_NAME* and uncheck *CREATE* checkbox. This will run Terraform destroy for said
+deployment.
 
 ## pre-commit considerations
 
@@ -148,7 +148,7 @@ No modules.
 | <a name="input_CERTBOT_EMAIL"></a> [CERTBOT\_EMAIL](#input\_CERTBOT\_EMAIL) | Email address to send certificate expiration notifications. | `string` | `"benjam.gronmark_arkiproj@hotmail.com"` | no |
 | <a name="input_DEPLOYMENT_NAME"></a> [DEPLOYMENT\_NAME](#input\_DEPLOYMENT\_NAME) | Set DNS name, if not set will be automatically generated | `string` | `null` | no |
 | <a name="input_DOCKER_COMPOSITION_REPO"></a> [DOCKER\_COMPOSITION\_REPO](#input\_DOCKER\_COMPOSITION\_REPO) | The repo to use to get the docker-composition from | `string` | `"https://github.com/pvarki/docker-rasenmaeher-integration.git"` | no |
-| <a name="input_DOCKER_REPO_TAG"></a> [DOCKER\_REPO\_TAG](#input\_DOCKER\_REPO\_TAG) | The branch/tag in DOCKER\_COMPOSITION\_REPO to use | `string` | `"1.0.1"` | no |
+| <a name="input_DOCKER_REPO_TAG"></a> [DOCKER\_REPO\_TAG](#input\_DOCKER\_REPO\_TAG) | The branch/tag in DOCKER\_COMPOSITION\_REPO to use | `string` | `"1.1.0"` | no |
 | <a name="input_EXPIRES"></a> [EXPIRES](#input\_EXPIRES) | ISO 8601 date (yyyy-mm-dd) after which this resource is cleaned up, defaults to 30days from now | `string` | `null` | no |
 | <a name="input_RESOURCE_GROUP_LOCATION"></a> [RESOURCE\_GROUP\_LOCATION](#input\_RESOURCE\_GROUP\_LOCATION) | Location of the resource group. | `string` | `"northeurope"` | no |
 | <a name="input_RESOURCE_GROUP_NAME_PREFIX"></a> [RESOURCE\_GROUP\_NAME\_PREFIX](#input\_RESOURCE\_GROUP\_NAME\_PREFIX) | Prefix of the resource group name that's combined with a random ID so name is unique in your Azure subscription. | `string` | `"rg-miniwerk"` | no |
