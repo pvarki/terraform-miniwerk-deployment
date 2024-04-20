@@ -40,7 +40,7 @@ variable "DOCKER_COMPOSITION_REPO" {
 
 
 variable "DOCKER_REPO_TAG" {
-  default     = "1.0.1" # do not set to "main", nothing guarantees there are no backwards incompatible changes
+  default     = "1.2.0" # do not set to "main", nothing guarantees there are no backwards incompatible changes
   description = "The branch/tag in DOCKER_COMPOSITION_REPO to use"
   type        = string
 }
@@ -66,5 +66,11 @@ variable "ZONE_DNS_NAME" {
 variable "CERTBOT_EMAIL" {
   default     = "benjam.gronmark_arkiproj@hotmail.com"
   description = "Email address to send certificate expiration notifications."
+  type        = string
+}
+
+variable "DOCKER_TAG_EXTRA" {
+  default     = ""
+  description = "If you want to deploy for example a PR tagged version, messing this up is a good way to make everything take forever"
   type        = string
 }

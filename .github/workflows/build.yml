@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron:  '30 5,17 * * *'
+    - cron:  '30 2 * * 1'
   pull_request:
 
 jobs:
@@ -11,7 +11,7 @@ jobs:
       pull-requests: write
       checks: write
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: recursive
     - name: install dependencies
@@ -19,7 +19,7 @@ jobs:
       run: |
         cd /tmp
         python -m pip install --upgrade pip
-        pip install pre-commit==3.4.0
+        pip install pre-commit==3.5.0
         curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
         curl -sSLo ./terraform-docs.tar.gz https://terraform-docs.io/dl/v0.16.0/terraform-docs-v0.16.0-$(uname)-amd64.tar.gz
         tar -xzf terraform-docs.tar.gz

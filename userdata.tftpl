@@ -54,13 +54,28 @@ echo "KEYCLOAK_MANAGEMENT_PASSWORD=${KEYCLOAK_MANAGEMENT_PASSWORD}" >>.env
 echo "TAK_DATABASE_PASSWORD=${TAK_DATABASE_PASSWORD}" >>.env
 echo "TAKSERVER_CERT_PASS=${TAKSERVER_CERT_PASS}" >>.env
 echo "TAK_CA_PASS=${TAK_CA_PASS}" >>.env
+if [ ! -z "${DOCKER_TAG_EXTRA}" ]
+then
+  echo "DOCKER_TAG_EXTRA=${DOCKER_TAG_EXTRA}" >>.env
+fi
 source .env
 
+export DOCKER_BUILDKIT=1
 # docker compose is not the same as docker-compose, which is legacy and does not support all things the version without dash does
 echo "** docker compose pull"
 docker compose pull --include-deps --ignore-pull-failures
 echo "** docker compose up"
-docker compose up -d
+set +e
+
+# Use function to bring the composition up
+dcup() {
+  docker compose down
+  docker compose up -d
+  return $?
+}
+
+# Try 3 times via the function
+dcup || dcup || dcup
 echo "** Check API health"
 curl -s https://${DEPLOYMENT_DNS}/api/v1/healthcheck/services | jq
 echo "DONE"
