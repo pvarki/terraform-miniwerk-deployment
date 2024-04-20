@@ -68,3 +68,9 @@ variable "CERTBOT_EMAIL" {
   description = "Email address to send certificate expiration notifications."
   type        = string
 }
+
+variable "DOCKER_TAG_EXTRA" {
+  default     = ""
+  description = "If you want to deploy for example a PR tagged version, messing this up is a good way to make everything take forever"
+  type        = string
+}

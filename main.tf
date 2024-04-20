@@ -294,6 +294,7 @@ resource "azurerm_linux_virtual_machine" "this" {
     POSTGRES_PASSWORD            = xkcdpass_generate.postgres_pass.result
     COMP_REPO_URI                = var.DOCKER_COMPOSITION_REPO
     COMP_REPO_TAG                = var.DOCKER_REPO_TAG
+    DOCKER_TAG_EXTRA             = var.DOCKER_TAG_EXTRA
     DEPLOYMENT_NAME              = local.DEPLOYMENT_NAME
     RM_DATABASE_PASSWORD         = xkcdpass_generate.rm_db_pass.result
     KEYCLOAK_DATABASE_PASSWORD   = xkcdpass_generate.kc_db_pass.result
