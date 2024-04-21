@@ -304,6 +304,7 @@ resource "azurerm_linux_virtual_machine" "this" {
     TAK_DATABASE_PASSWORD        = xkcdpass_generate.tak_db_pass.result
     TAKSERVER_CERT_PASS          = xkcdpass_generate.tak_jks1_pass.result
     TAK_CA_PASS                  = xkcdpass_generate.tak_jks2_pass.result
+    EXPIRES                      = local.expires
   }))
 
   admin_username                  = "azureuser"
