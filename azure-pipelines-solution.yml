@@ -33,7 +33,7 @@ parameters:
   default: false
 - name: ZONE_DNS_NAME
   type: string
-  default: "pvarki.fi"
+  default: "solution.dev.pvarki.fi"
 - name: CERTBOT_EMAIL
   type: string
   default: false
