@@ -70,7 +70,7 @@ stages:
             inputs:
               provider: azurerm
               command: init
-              backendServiceArm: FDF-PVARKI-SOLUTION-Dev
+              backendServiceArm: FDF-PVARKI-Sub-Service-Connection
               backendAzureRmResourceGroupName: FDF-PVARKI-common
               backendAzureRmStorageAccountName: arkitfstate
               backendAzureRmContainerName: deliveries
