@@ -30,7 +30,7 @@ parameters:
   default: false
 - name: ZONE_RESOURCE_GROUP
   type: string
-  default: false
+  default: "FDF-PVARKI-SOLUTION-static"
 - name: ZONE_DNS_NAME
   type: string
   default: "solution.dev.pvarki.fi"
