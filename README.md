@@ -132,8 +132,9 @@ No modules.
 | [random_pet.rg_name](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet) | resource |
 | [xkcdpass_generate.kc_admin_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.kc_db_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
+| [xkcdpass_generate.kc_keystore_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.kc_ldap_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
-| [xkcdpass_generate.kc_mgr_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
+| [xkcdpass_generate.kc_truststore_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.postgres_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.rm_db_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.tak_db_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
