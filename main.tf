@@ -18,7 +18,11 @@ resource "xkcdpass_generate" "kc_admin_pass" {
   length = 6
 }
 
-resource "xkcdpass_generate" "kc_mgr_pass" {
+resource "xkcdpass_generate" "kc_keystore_pass" {
+  length = 6
+}
+
+resource "xkcdpass_generate" "kc_truststore_pass" {
   length = 6
 }
 
@@ -289,23 +293,24 @@ resource "azurerm_linux_virtual_machine" "this" {
   }
 
   user_data = base64encode(templatefile("userdata.tftpl", {
-    CERTBOT_EMAIL                = var.CERTBOT_EMAIL
-    DEPLOYMENT_DNS               = trimsuffix(azurerm_dns_a_record.this.fqdn, ".")
-    POSTGRES_PASSWORD            = xkcdpass_generate.postgres_pass.result
-    COMP_REPO_URI                = var.DOCKER_COMPOSITION_REPO
-    COMP_REPO_TAG                = var.DOCKER_REPO_TAG
-    DOCKER_TAG_EXTRA             = var.DOCKER_TAG_EXTRA
-    VITE_ASSET_SET               = var.VITE_ASSET_SET
-    DEPLOYMENT_NAME              = local.DEPLOYMENT_NAME
-    RM_DATABASE_PASSWORD         = xkcdpass_generate.rm_db_pass.result
-    KEYCLOAK_DATABASE_PASSWORD   = xkcdpass_generate.kc_db_pass.result
-    KEYCLOAK_ADMIN_PASSWORD      = xkcdpass_generate.kc_admin_pass.result
-    KEYCLOAK_MANAGEMENT_PASSWORD = xkcdpass_generate.kc_mgr_pass.result
-    LDAP_ADMIN_PASSWORD          = xkcdpass_generate.kc_ldap_pass.result
-    TAK_DATABASE_PASSWORD        = xkcdpass_generate.tak_db_pass.result
-    TAKSERVER_CERT_PASS          = xkcdpass_generate.tak_jks1_pass.result
-    TAK_CA_PASS                  = xkcdpass_generate.tak_jks2_pass.result
-    EXPIRES                      = local.expires
+    CERTBOT_EMAIL                       = var.CERTBOT_EMAIL
+    DEPLOYMENT_DNS                      = trimsuffix(azurerm_dns_a_record.this.fqdn, ".")
+    POSTGRES_PASSWORD                   = xkcdpass_generate.postgres_pass.result
+    COMP_REPO_URI                       = var.DOCKER_COMPOSITION_REPO
+    COMP_REPO_TAG                       = var.DOCKER_REPO_TAG
+    VITE_ASSET_SET                      = var.VITE_ASSET_SET
+    DOCKER_TAG_EXTRA                    = var.DOCKER_TAG_EXTRA
+    DEPLOYMENT_NAME                     = local.DEPLOYMENT_NAME
+    RM_DATABASE_PASSWORD                = xkcdpass_generate.rm_db_pass.result
+    KEYCLOAK_DATABASE_PASSWORD          = xkcdpass_generate.kc_db_pass.result
+    KEYCLOAK_ADMIN_PASSWORD             = xkcdpass_generate.kc_admin_pass.result
+    KEYCLOAK_HTTPS_KEY_STORE_PASSWORD   = xkcdpass_generate.kc_keystore_pass.result
+    KEYCLOAK_HTTPS_TRUST_STORE_PASSWORD = xkcdpass_generate.kc_truststore_pass.result
+    LDAP_ADMIN_PASSWORD                 = xkcdpass_generate.kc_ldap_pass.result
+    TAK_DATABASE_PASSWORD               = xkcdpass_generate.tak_db_pass.result
+    TAKSERVER_CERT_PASS                 = xkcdpass_generate.tak_jks1_pass.result
+    TAK_CA_PASS                         = xkcdpass_generate.tak_jks2_pass.result
+    EXPIRES                             = local.expires
   }))
 
   admin_username                  = "azureuser"
