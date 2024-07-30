@@ -40,7 +40,7 @@ variable "DOCKER_COMPOSITION_REPO" {
 
 
 variable "DOCKER_REPO_TAG" {
-  default     = "1.3.0" # do not set to "main", nothing guarantees there are no backwards incompatible changes
+  default     = "1.4.1" # do not set to "main", nothing guarantees there are no backwards incompatible changes
   description = "The branch/tag in DOCKER_COMPOSITION_REPO to use"
   type        = string
 }
@@ -52,13 +52,13 @@ variable "VM_SIZE" {
 }
 
 variable "ZONE_RESOURCE_GROUP" {
-  default     = "FDF-PVARKI-common"
+  default     = "FDF-PVARKI-SOLUTION-static"
   description = "Resource group where the DNS zone resides"
   type        = string
 }
 
 variable "ZONE_DNS_NAME" {
-  default     = "pvarki.fi"
+  default     = "solution.dev.pvarki.fi"
   description = "DNS Zone to place mumbler server under"
   type        = string
 }
