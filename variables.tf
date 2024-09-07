@@ -20,7 +20,7 @@ variable "DEPLOYMENT_NAME" {
 }
 
 variable "VITE_ASSET_SET" {
-  default     = "neutral"
+  default     = "fdf"
   description = "Which asset set to use for RM UI"
   type        = string
 }
