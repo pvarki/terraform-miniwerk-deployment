@@ -28,6 +28,9 @@ parameters:
 - name: VM_SIZE
   type: string
   default: false
+- name: VITE_ASSET_SET
+  type: string
+  default: false
 - name: ZONE_RESOURCE_GROUP
   type: string
   default: false
