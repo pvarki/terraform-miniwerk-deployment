@@ -48,6 +48,7 @@ echo "COMPOSE_PROJECT_NAME=rmvm" >>.env
 echo "CFSSL_CA_NAME=${DEPLOYMENT_NAME}" >>.env
 echo "SERVER_DOMAIN=${DEPLOYMENT_DNS}" >>.env
 echo "MW_LE_EMAIL=${CERTBOT_EMAIL}" >>.env
+echo "VITE_ASSET_SET=${VITE_ASSET_SET}" >>.env
 echo "MW_LE_TEST=false" >>.env
 echo "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}" >>.env
 echo "RM_DATABASE_PASSWORD=${RM_DATABASE_PASSWORD}" >>.env
