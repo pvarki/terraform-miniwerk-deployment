@@ -19,6 +19,11 @@ variable "DEPLOYMENT_NAME" {
   type        = string
 }
 
+variable "VITE_ASSET_SET" {
+  default     = "neutral"
+  description = "Which asset set to use for RM UI"
+  type        = string
+}
 
 variable "RESOURCE_GROUP_LOCATION" {
   default     = "northeurope"
