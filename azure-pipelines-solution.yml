@@ -1,0 +1,120 @@
+trigger:
+- none
+
+pool:
+  vmImage: ubuntu-latest
+
+parameters:
+- name: SSH_PUBLIC_KEY
+  type: string
+- name: EXPIRES
+  type: string
+  default: false
+- name: DEPLOYMENT_NAME
+  type: string
+  default: false
+- name: RESOURCE_GROUP_LOCATION
+  type: string
+  default: false
+- name: RESOURCE_GROUP_NAME_PREFIX
+  type: string
+  default: rg-miniwerk
+- name: DOCKER_COMPOSITION_REPO
+  type: string
+  default: false
+- name: DOCKER_REPO_TAG
+  type: string
+  default: false
+- name: VM_SIZE
+  type: string
+  default: false
+- name: VITE_ASSET_SET
+  type: string
+  default: false
+- name: ZONE_RESOURCE_GROUP
+  type: string
+  default: false
+- name: ZONE_DNS_NAME
+  type: string
+  default: "pvarki.fi"
+- name: CERTBOT_EMAIL
+  type: string
+  default: false
+- name: WORKSPACE_NAME
+  type: string
+- name: CREATE
+  type: boolean
+  default: true
+
+
+variables:
+  ${{ each parameter in parameters }}:
+    ${{ if ne( parameter.value , false ) }}:
+      TF_VAR_${{ parameter.key }}: ${{ parameter.value }}
+
+stages:
+  - stage: create_resources
+    displayName: Create miniwerk resources
+    jobs:
+      - job: create
+        condition: eq(${{ parameters.CREATE }}, 'true')
+        steps:
+          - task: AzureKeyVault@2
+            inputs:
+              azureSubscription: FDF-PVARKI-ORDER-Dev-Sub-Service-Connection
+              KeyVaultName: pvarki-shared-kv001
+              SecretsFilter: tfstatestoragekey #pragma: allowlist secret
+              RunAsPreJob: true
+
+          - task: TerraformTaskV3@3
+            displayName: Terraform Init
+            env:
+              ARM_ACCESS_KEY: $(tfstatestoragekey)
+            inputs:
+              provider: azurerm
+              command: init
+              backendServiceArm: FDF-PVARKI-ORDER-Dev-Sub-Service-Connection
+              backendAzureRmResourceGroupName: FDF-PVARKI-ORDER-Dev-common
+              backendAzureRmStorageAccountName: arkitfstate
+              backendAzureRmContainerName: deliveries
+              backendAzureRmKey: "${{ parameters.RESOURCE_GROUP_NAME_PREFIX }}/${{ parameters.WORKSPACE_NAME }}.tfstate"
+
+          - task: TerraformTaskV3@3
+            displayName: Apply Terraform Plan
+            inputs:
+              provider: azurerm
+              command: apply
+              environmentServiceNameAzureRM: FDF-PVARKI-Sub-Service-Connection
+
+  - stage: destroy_resources
+    displayName: Destroy miniwerk resources
+    jobs:
+      - job: destroy
+        condition: ne(${{ parameters.CREATE }}, 'true')
+        steps:
+          - task: AzureKeyVault@2
+            inputs:
+              azureSubscription: FDF-PVARKI-ORDER-Dev-Sub-Service-Connection
+              KeyVaultName: pvarki-shared-kv001
+              SecretsFilter: tfstatestoragekey #pragma: allowlist secret
+              RunAsPreJob: true
+
+          - task: TerraformTaskV3@3
+            displayName: Terraform Init
+            env:
+              ARM_ACCESS_KEY: $(tfstatestoragekey)
+            inputs:
+              provider: azurerm
+              command: init
+              backendServiceArm: FDF-PVARKI-ORDER-Dev-Sub-Service-Connection
+              backendAzureRmResourceGroupName: FDF-PVARKI-ORDER-Dev-common
+              backendAzureRmStorageAccountName: arkitfstate
+              backendAzureRmContainerName: deliveries
+              backendAzureRmKey: "${{ parameters.RESOURCE_GROUP_NAME_PREFIX }}/${{ parameters.WORKSPACE_NAME }}.tfstate"
+
+          - task: TerraformTaskV3@3
+            displayName: Apply Terraform Destroy
+            inputs:
+              provider: azurerm
+              command: destroy
+              environmentServiceNameAzureRM: FDF-PVARKI-ORDER-Dev-Sub-Service-Connection
