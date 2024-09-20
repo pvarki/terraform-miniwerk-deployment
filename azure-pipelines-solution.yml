@@ -71,7 +71,7 @@ stages:
               provider: azurerm
               command: init
               backendServiceArm: FDF-PVARKI-Sub-Service-Connection
-              backendAzureRmResourceGroupName: FDF-PVARKI-common
+              backendAzureRmResourceGroupName: FDF-PVARKI-Dev-common
               backendAzureRmStorageAccountName: arkitfstate
               backendAzureRmContainerName: deliveries
               backendAzureRmKey: "${{ parameters.RESOURCE_GROUP_NAME_PREFIX }}/${{ parameters.WORKSPACE_NAME }}.tfstate"
@@ -104,7 +104,7 @@ stages:
               provider: azurerm
               command: init
               backendServiceArm: FDF-PVARKI-Sub-Service-Connection
-              backendAzureRmResourceGroupName: FDF-PVARKI-common
+              backendAzureRmResourceGroupName: FDF-PVARKI-Dev-common
               backendAzureRmStorageAccountName: arkitfstate
               backendAzureRmContainerName: deliveries
               backendAzureRmKey: "${{ parameters.RESOURCE_GROUP_NAME_PREFIX }}/${{ parameters.WORKSPACE_NAME }}.tfstate"
