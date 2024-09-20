@@ -21,5 +21,15 @@ terraform {
 }
 
 provider "azurerm" {
+  subscription_id = "3847d867-f225-4c32-9e3e-38573a7bc5fd"
+  skip_provider_registration = "true"
   features {}
+  alias = "solution"
+}
+
+provider "azurerm" {
+  subscription_id = "a20cc10d-ef06-4cbf-a7f4-0fdbd84f989e"
+  skip_provider_registration = "true"
+  features {}
+  alias = "order"
 }
