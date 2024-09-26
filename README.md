@@ -11,6 +11,8 @@ After the authentication is completed, you must once initialize your local TF st
 terraform init
 ```
 
+TESTIRIVI
+
 To preserve your sanity create `myname.tfvars` -file with the RSA key you
 use for SSH (needed to get the first time login code):
 
