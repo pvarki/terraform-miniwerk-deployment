@@ -38,6 +38,13 @@ resource "xkcdpass_generate" "tak_jks2_pass" {
   length = 6
 }
 
+resource "xkcdpass_generate" "trust_pass" {
+  length = 6
+}
+resource "xkcdpass_generate" "keystore_pass" {
+  length = 6
+}
+
 locals {
   today           = timestamp()
   one_month_later = timeadd(local.today, "720h")
