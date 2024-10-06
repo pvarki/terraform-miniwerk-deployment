@@ -40,6 +40,12 @@ parameters:
 - name: CERTBOT_EMAIL
   type: string
   default: false
+- name: KEYCLOAK_HTTPS_KEY_STORE_PASSWORD
+  type: string 
+  default: false
+- name: KEYCLOAK_HTTPS_TRUST_STORE_PASSWORD
+  type: string 
+  default: false
 - name: WORKSPACE_NAME
   type: string
 - name: CREATE

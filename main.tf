@@ -306,6 +306,8 @@ resource "azurerm_linux_virtual_machine" "this" {
     TAKSERVER_CERT_PASS          = xkcdpass_generate.tak_jks1_pass.result
     TAK_CA_PASS                  = xkcdpass_generate.tak_jks2_pass.result
     EXPIRES                      = local.expires
+    KEYCLOAK_HTTPS_KEY_STORE_PASSWORD = xkcdpass_generate.keystore__pass.result
+    KEYCLOAK_HTTPS_TRUST_STORE_PASSWORD = xkcdpass_generate.trust_pass.result
   }))
 
   admin_username                  = "azureuser"
