@@ -83,9 +83,11 @@ variable "DOCKER_TAG_EXTRA" {
 variable "KEYCLOAK_HTTPS_KEY_STORE_PASSWORD" {
   description = "Keycloak key store password"
   type        = string
+  default     = ""
 }
 
 variable "KEYCLOAK_HTTPS_TRUST_STORE_PASSWORD" {
   description = "Keycloak trust store password"
   type        = string
+  default     = ""
 }
