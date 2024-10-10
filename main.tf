@@ -263,6 +263,18 @@ resource "azurerm_network_security_group" "this" {
     destination_address_prefix = "*"
   }
 
+  security_rule {
+    name                       = "AllowKeycloak"
+    priority                   = 1007
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "9443"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
   tags = {
     "fi.fdf.pilvi.expires" : local.expires
     backup = "nobackup"
