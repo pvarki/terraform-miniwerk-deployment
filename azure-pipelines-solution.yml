@@ -25,6 +25,9 @@ parameters:
 - name: DOCKER_REPO_TAG
   type: string
   default: false
+- name: DOCKER_TAG_EXTRA
+  type: string
+  default: false
 - name: VM_SIZE
   type: string
   default: false

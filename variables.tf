@@ -79,15 +79,3 @@ variable "DOCKER_TAG_EXTRA" {
   description = "If you want to deploy for example a PR tagged version, messing this up is a good way to make everything take forever"
   type        = string
 }
-
-variable "KEYCLOAK_HTTPS_KEY_STORE_PASSWORD" {
-  description = "Keycloak key store password"
-  type        = string
-  default     = ""
-}
-
-variable "KEYCLOAK_HTTPS_TRUST_STORE_PASSWORD" {
-  description = "Keycloak trust store password"
-  type        = string
-  default     = ""
-}
