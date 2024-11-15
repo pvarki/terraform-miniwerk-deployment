@@ -13,7 +13,7 @@ apt-get install -y \
   jq
 
 # Very dirty calculation for setting CFSSL expiry after machine expiry
-export EXPIRES_IN_HOURS=$(python -c 'import datetime; exp = datetime.datetime.strptime("${EXPIRES}", "%Y-%m-%d"); now = datetime.datetime.now(); diff = exp-now; print(f"{(diff.days+2)*24}h")')
+export EXPIRES_IN_HOURS=$(python3 -c 'import datetime; exp = datetime.datetime.strptime("${EXPIRES}", "%Y-%m-%d"); now = datetime.datetime.now(); diff = exp-now; print(f"{(diff.days+2)*24}h")')
 
 # Add Docker's official GPG key:
 install -m 0755 -d /etc/apt/keyrings
