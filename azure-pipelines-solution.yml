@@ -93,7 +93,7 @@ stages:
             displayName: Create github issue
             inputs:
               connection: github_connector
-            - script: |
+              script: |
                 echo "Creating a GitHub issue..."
                 curl -X POST \
                   -H "Authorization: Bearer $(System.AccessToken)" \
