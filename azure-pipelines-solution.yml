@@ -76,7 +76,7 @@ stages:
             inputs:
               provider: azurerm
               command: init
-              backendServiceArm: FDF-PVARKI-SOLUTION-Dev
+              backendServiceArm: pvarki-solution
               backendAzureRmResourceGroupName: FDF-PVARKI-ORDER-Dev-common
               backendAzureRmStorageAccountName: arkitfstate
               backendAzureRmContainerName: deliveries
@@ -87,7 +87,7 @@ stages:
             inputs:
               provider: azurerm
               command: apply
-              environmentServiceNameAzureRM: FDF-PVARKI-SOLUTION-Dev
+              environmentServiceNameAzureRM: pvarki-solution
 
   - stage: destroy_resources
     displayName: Destroy miniwerk resources
@@ -109,7 +109,7 @@ stages:
             inputs:
               provider: azurerm
               command: init
-              backendServiceArm: FDF-PVARKI-SOLUTION-Dev
+              backendServiceArm: pvarki-solution
               backendAzureRmResourceGroupName: FDF-PVARKI-ORDER-Dev-common
               backendAzureRmStorageAccountName: arkitfstate
               backendAzureRmContainerName: deliveries
@@ -120,4 +120,4 @@ stages:
             inputs:
               provider: azurerm
               command: destroy
-              environmentServiceNameAzureRM: FDF-PVARKI-SOLUTION-Dev
+              environmentServiceNameAzureRM: pvarki-solution
