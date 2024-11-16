@@ -89,7 +89,7 @@ stages:
               command: apply
               environmentServiceNameAzureRM: FDF-PVARKI-SOLUTION-Dev
 
-          - task: UseGitHubConnection@0
+          - task: Bash@3
             displayName: Create github issue
             inputs:
               connection: github_connector
