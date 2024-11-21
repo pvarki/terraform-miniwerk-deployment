@@ -64,7 +64,7 @@ stages:
         steps:
           - task: AzureKeyVault@2
             inputs:
-              azureSubscription: FDF-PVARKI-SOLUTION-Dev
+              azureSubscription: FDF-PVARKI-ORDER-Dev
               KeyVaultName: pvarki-shared-kv001
               SecretsFilter: tfstatestoragekey #pragma: allowlist secret
               RunAsPreJob: true
