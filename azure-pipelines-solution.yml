@@ -69,7 +69,7 @@ stages:
               SecretsFilter: tfstatestoragekey #pragma: allowlist secret
               RunAsPreJob: true
 
-          - task: TerraformTaskV3@3
+          - task: TerraformTaskV4@4
             displayName: Terraform Init
             env:
               ARM_ACCESS_KEY: $(tfstatestoragekey)
@@ -82,7 +82,7 @@ stages:
               backendAzureRmContainerName: deliveries
               backendAzureRmKey: "${{ parameters.RESOURCE_GROUP_NAME_PREFIX }}/${{ parameters.WORKSPACE_NAME }}.tfstate"
 
-          - task: TerraformTaskV3@3
+          - task: TerraformTaskV4@4
             displayName: Apply Terraform Plan
             inputs:
               provider: azurerm
