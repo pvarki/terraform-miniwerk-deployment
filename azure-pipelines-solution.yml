@@ -107,8 +107,8 @@ stages:
                   }'
               displayName: 'Create GitHub Issue'
               workingDirectory: $(System.DefaultWorkingDirectory)
-              env:
-                GitHubToken: $(serviceConnection.github_connector.auth.token)
+            env:
+              GitHubToken: $(serviceConnection.github_connector.auth.token)
               
   - stage: destroy_resources
     displayName: Destroy miniwerk resources
