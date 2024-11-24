@@ -67,31 +67,32 @@ stages:
         steps:
           - task: AzureKeyVault@2
             inputs:
-              azureSubscription: FDF-PVARKI-SOLUTION-Dev
+              azureSubscription: FDF-PVARKI-ORDER-Dev-Sub-Service-Connection_002
               KeyVaultName: pvarki-shared-kv001
               SecretsFilter: tfstatestoragekey #pragma: allowlist secret
               RunAsPreJob: true
 
-          - task: TerraformTaskV3@3
+          - task: TerraformTaskV4@4
             displayName: Terraform Init
             env:
               ARM_ACCESS_KEY: $(tfstatestoragekey)
             inputs:
               provider: azurerm
               command: init
-              backendServiceArm: FDF-PVARKI-ORDER-Dev-Sub-Service-Connection
+              backendServiceArm: FDF-PVARKI-ORDER-Dev-Sub-Service-Connection_002
               backendAzureRmResourceGroupName: FDF-PVARKI-ORDER-Dev-common
               backendAzureRmStorageAccountName: arkitfstate
               backendAzureRmContainerName: deliveries
               backendAzureRmKey: "${{ parameters.RESOURCE_GROUP_NAME_PREFIX }}/${{ parameters.WORKSPACE_NAME }}.tfstate"
 
-          - task: TerraformTaskV3@3
+          - task: TerraformTaskV4@4
             displayName: Apply Terraform Plan
             inputs:
               provider: azurerm
               command: apply
               environmentServiceNameAzureRM: FDF-PVARKI-SOLUTION-Dev
 
+<<<<<<< HEAD
           # - task: Bash@3
           #   displayName: Create github issue
           #   inputs:
@@ -114,6 +115,28 @@ stages:
           #       GITHUB_TOKEN: $(serviceConnection.github_connector.auth.token)
           #       DEPLOYMENT_NAME: ${{ parameters.DEPLOYMENT_NAME }}
           #       WORKSPACE_NAME: ${{ parameters.WORKSPACE_NAME }}
+=======
+          - task: Bash@3
+            displayName: Create github issue
+            inputs:
+              targetType: 'inline'
+              connection: github_connector
+              script: |
+                echo "Creating a GitHub issue..."
+                curl -X POST \
+                  -H "Authorization: Bearer $(GitHubToken)" \
+                  -H "Accept: application/vnd.github.v3+json" \
+                  https://api.github.com/repos/pvarki/terraform-miniwerk-deployment/issues \
+                  -d '{
+                    "title": "Automated Issue: Created ${{ parameters.DEPLOYMENT_NAME }} with workspace ${{ parameters.WORKSPACE_NAME }}",
+                    "body": "This issue was created by an Azure DevOps pipeline using the GitHub service connection.",
+                    "labels": ["automation","instance"]
+                  }'
+              displayName: 'Create GitHub Issue'
+              workingDirectory: $(System.DefaultWorkingDirectory)
+            env:
+              GitHubToken: $(serviceConnection.github_connector.auth.token)
+>>>>>>> azurepipelines
               
   - stage: destroy_resources
     displayName: Destroy miniwerk resources
@@ -123,25 +146,25 @@ stages:
         steps:
           - task: AzureKeyVault@2
             inputs:
-              azureSubscription: FDF-PVARKI-SOLUTION-Dev
+              azureSubscription: FDF-PVARKI-ORDER-Dev-Sub-Service-Connection_002
               KeyVaultName: pvarki-shared-kv001
               SecretsFilter: tfstatestoragekey #pragma: allowlist secret
               RunAsPreJob: true
 
-          - task: TerraformTaskV3@3
+          - task: TerraformTaskV4@4
             displayName: Terraform Init
             env:
               ARM_ACCESS_KEY: $(tfstatestoragekey)
             inputs:
               provider: azurerm
               command: init
-              backendServiceArm: FDF-PVARKI-ORDER-Dev-Sub-Service-Connection
+              backendServiceArm: FDF-PVARKI-ORDER-Dev-Sub-Service-Connection_002
               backendAzureRmResourceGroupName: FDF-PVARKI-ORDER-Dev-common
               backendAzureRmStorageAccountName: arkitfstate
               backendAzureRmContainerName: deliveries
               backendAzureRmKey: "${{ parameters.RESOURCE_GROUP_NAME_PREFIX }}/${{ parameters.WORKSPACE_NAME }}.tfstate"
 
-          - task: TerraformTaskV3@3
+          - task: TerraformTaskV4@4
             displayName: Apply Terraform Destroy
             inputs:
               provider: azurerm
