@@ -92,6 +92,7 @@ stages:
           - task: Bash@3
             displayName: Create github issue
             inputs:
+              targetType: 'inline'
               connection: github_connector
               script: |
                 echo "Creating a GitHub issue..."
