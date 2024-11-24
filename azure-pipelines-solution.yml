@@ -92,28 +92,28 @@ stages:
               command: apply
               environmentServiceNameAzureRM: FDF-PVARKI-SOLUTION-Dev
 
-          - task: Bash@3
-            displayName: Create github issue
-            inputs:
-              targetType: 'inline'
-              connection: github_connector
-              script: |
-                echo "Creating a GitHub issue..."
-                curl -X POST \
-                  -H "Authorization: Bearer $(#GITHUB_TOKEN)" \
-                  -H "Accept: application/vnd.github.v3+json" \
-                  https://api.github.com/repos/pvarki/terraform-miniwerk-deployment/issues \
-                  -d '{
-                    "title": "Automated Issue: Created ${{ parameters.DEPLOYMENT_NAME }} with workspace ${{ parameters.WORKSPACE_NAME }}",
-                    "body": "This issue was created by an Azure DevOps pipeline using the GitHub service connection.",
-                    "labels": ["automation","instance"]
-                  }'
-              displayName: 'Create GitHub Issue'
-              workingDirectory: $(System.DefaultWorkingDirectory)
-              env:
-                GITHUB_TOKEN: $(serviceConnection.github_connector.auth.token)
-                DEPLOYMENT_NAME: ${{ parameters.DEPLOYMENT_NAME }}
-                WORKSPACE_NAME: ${{ parameters.WORKSPACE_NAME }}
+          # - task: Bash@3
+          #   displayName: Create github issue
+          #   inputs:
+          #     targetType: 'inline'
+          #     connection: github_connector
+          #     script: |
+          #       echo "Creating a GitHub issue..."
+          #       curl -X POST \
+          #         -H "Authorization: Bearer $(#GITHUB_TOKEN)" \
+          #         -H "Accept: application/vnd.github.v3+json" \
+          #         https://api.github.com/repos/pvarki/terraform-miniwerk-deployment/issues \
+          #         -d '{
+          #           "title": "Automated Issue: Created ${{ parameters.DEPLOYMENT_NAME }} with workspace ${{ parameters.WORKSPACE_NAME }}",
+          #           "body": "This issue was created by an Azure DevOps pipeline using the GitHub service connection.",
+          #           "labels": ["automation","instance"]
+          #         }'
+          #     displayName: 'Create GitHub Issue'
+          #     workingDirectory: $(System.DefaultWorkingDirectory)
+          #     env:
+          #       GITHUB_TOKEN: $(serviceConnection.github_connector.auth.token)
+          #       DEPLOYMENT_NAME: ${{ parameters.DEPLOYMENT_NAME }}
+          #       WORKSPACE_NAME: ${{ parameters.WORKSPACE_NAME }}
               
   - stage: destroy_resources
     displayName: Destroy miniwerk resources
