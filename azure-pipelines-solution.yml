@@ -105,6 +105,7 @@ stages:
                     "labels": ["automation","instance"]
                   }'
               displayName: 'Create GitHub Issue'
+              workingDirectory: $(System.DefaultWorkingDirectory)
               
   - stage: destroy_resources
     displayName: Destroy miniwerk resources
