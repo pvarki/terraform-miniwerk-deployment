@@ -100,7 +100,7 @@ stages:
               script: |
                 echo "Creating a GitHub issue..."
                 curl -X POST \
-                  -H "Authorization: Bearer $(#GitHubToken)" \
+                  -H "Authorization: Bearer $(#GITHUB_TOKEN)" \
                   -H "Accept: application/vnd.github.v3+json" \
                   https://api.github.com/repos/pvarki/terraform-miniwerk-deployment/issues \
                   -d '{
@@ -111,7 +111,9 @@ stages:
               displayName: 'Create GitHub Issue'
               workingDirectory: $(System.DefaultWorkingDirectory)
               env:
-                GitHubToken: $(serviceConnection.github_connector.auth.token)
+                GITHUB_TOKEN: $(serviceConnection.github_connector.auth.token)
+                DEPLOYMENT_NAME: ${{ parameters.DEPLOYMENT_NAME }}
+                WORKSPACE_NAME: ${{ parameters.WORKSPACE_NAME }}
               
   - stage: destroy_resources
     displayName: Destroy miniwerk resources
