@@ -18,7 +18,11 @@ resource "xkcdpass_generate" "kc_admin_pass" {
   length = 6
 }
 
-resource "xkcdpass_generate" "kc_mgr_pass" {
+resource "xkcdpass_generate" "kc_keystore_pass" {
+  length = 6
+}
+
+resource "xkcdpass_generate" "kc_truststore_pass" {
   length = 6
 }
 
@@ -166,7 +170,19 @@ resource "azurerm_dns_a_record" "mtls_fake" {
   }
 }
 
-resource "azurerm_dns_a_record" "mtls_keycloak" {
+resource "azurerm_dns_a_record" "kc" {
+  name                = "kc.${local.DEPLOYMENT_NAME}"
+  zone_name           = data.azurerm_dns_zone.this.name
+  resource_group_name = data.azurerm_dns_zone.this.resource_group_name
+  ttl                 = 300
+  target_resource_id  = azurerm_public_ip.this.id
+  tags = {
+    "fi.fdf.pilvi.expires" : local.expires
+    backup = "nobackup"
+  }
+}
+
+resource "azurerm_dns_a_record" "mtls_kc" {
   name                = "mtls.kc.${local.DEPLOYMENT_NAME}"
   zone_name           = data.azurerm_dns_zone.this.name
   resource_group_name = data.azurerm_dns_zone.this.resource_group_name
@@ -178,17 +194,6 @@ resource "azurerm_dns_a_record" "mtls_keycloak" {
   }
 }
 
-resource "azurerm_dns_a_record" "keycloak" {
-  name                = "kc.${local.DEPLOYMENT_NAME}"
-  zone_name           = data.azurerm_dns_zone.this.name
-  resource_group_name = data.azurerm_dns_zone.this.resource_group_name
-  ttl                 = 300
-  target_resource_id  = azurerm_public_ip.this.id
-  tags = {
-    "fi.fdf.pilvi.expires" : local.expires
-    backup = "nobackup"
-  }
-}
 
 
 resource "azurerm_network_security_group" "this" {
@@ -263,6 +268,18 @@ resource "azurerm_network_security_group" "this" {
     destination_address_prefix = "*"
   }
 
+  security_rule {
+    name                       = "AllowKC"
+    priority                   = 1007
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "9443"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
   tags = {
     "fi.fdf.pilvi.expires" : local.expires
     backup = "nobackup"
@@ -324,20 +341,19 @@ resource "azurerm_linux_virtual_machine" "this" {
     POSTGRES_PASSWORD                   = xkcdpass_generate.postgres_pass.result
     COMP_REPO_URI                       = var.DOCKER_COMPOSITION_REPO
     COMP_REPO_TAG                       = var.DOCKER_REPO_TAG
-    DOCKER_TAG_EXTRA                    = var.DOCKER_TAG_EXTRA
     VITE_ASSET_SET                      = var.VITE_ASSET_SET
+    DOCKER_TAG_EXTRA                    = var.DOCKER_TAG_EXTRA
     DEPLOYMENT_NAME                     = local.DEPLOYMENT_NAME
     RM_DATABASE_PASSWORD                = xkcdpass_generate.rm_db_pass.result
     KEYCLOAK_DATABASE_PASSWORD          = xkcdpass_generate.kc_db_pass.result
     KEYCLOAK_ADMIN_PASSWORD             = xkcdpass_generate.kc_admin_pass.result
-    KEYCLOAK_MANAGEMENT_PASSWORD        = xkcdpass_generate.kc_mgr_pass.result
+    KEYCLOAK_HTTPS_KEY_STORE_PASSWORD   = xkcdpass_generate.kc_keystore_pass.result
+    KEYCLOAK_HTTPS_TRUST_STORE_PASSWORD = xkcdpass_generate.kc_truststore_pass.result
     LDAP_ADMIN_PASSWORD                 = xkcdpass_generate.kc_ldap_pass.result
     TAK_DATABASE_PASSWORD               = xkcdpass_generate.tak_db_pass.result
     TAKSERVER_CERT_PASS                 = xkcdpass_generate.tak_jks1_pass.result
     TAK_CA_PASS                         = xkcdpass_generate.tak_jks2_pass.result
     EXPIRES                             = local.expires
-    KEYCLOAK_HTTPS_KEY_STORE_PASSWORD   = xkcdpass_generate.keystore_pass.result
-    KEYCLOAK_HTTPS_TRUST_STORE_PASSWORD = xkcdpass_generate.trust_pass.result
   }))
 
   admin_username                  = "azureuser"
