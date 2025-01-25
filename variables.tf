@@ -45,7 +45,7 @@ variable "DOCKER_COMPOSITION_REPO" {
 
 # FIXME: Update the tag when https://github.com/pvarki/docker-rasenmaeher-integration/pull/95 is merged
 variable "DOCKER_REPO_TAG" {
-  default     = "1.6.0" # do not set to "main", nothing guarantees there are no backwards incompatible changes
+  default     = "server_53" # do not set to "main", nothing guarantees there are no backwards incompatible changes
   description = "The branch/tag in DOCKER_COMPOSITION_REPO to use"
   type        = string
 }
@@ -75,7 +75,7 @@ variable "CERTBOT_EMAIL" {
 }
 
 variable "DOCKER_TAG_EXTRA" {
-  default     = ""
+  default     = "-118-merge"
   description = "If you want to deploy for example a PR tagged version, messing this up is a good way to make everything take forever"
   type        = string
 }
