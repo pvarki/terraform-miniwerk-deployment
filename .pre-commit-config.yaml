@@ -37,7 +37,7 @@ repos:
         exclude: ".*lock.*"
         # args: ['--baseline', '.secrets.baseline']
 -   repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: "v1.88.0" # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
+    rev: "v1.97.0" # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
     hooks:
     -   id: terraform_fmt
     -   id: terraform_docs

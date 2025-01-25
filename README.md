@@ -89,7 +89,7 @@ should be able to handle by itself.
 [pc]: https://pre-commit.com/#install
 
 # Terraform docs (autogenerarated)
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -167,4 +167,4 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_dns_name"></a> [dns\_name](#output\_dns\_name) | FQDN for RASENMAEHER |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
