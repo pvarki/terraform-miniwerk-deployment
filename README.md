@@ -151,8 +151,8 @@ No modules.
 | <a name="input_CERTBOT_EMAIL"></a> [CERTBOT\_EMAIL](#input\_CERTBOT\_EMAIL) | Email address to send certificate expiration notifications. | `string` | `"benjam.gronmark_arkiproj@hotmail.com"` | no |
 | <a name="input_DEPLOYMENT_NAME"></a> [DEPLOYMENT\_NAME](#input\_DEPLOYMENT\_NAME) | Set DNS name, if not set will be automatically generated | `string` | `null` | no |
 | <a name="input_DOCKER_COMPOSITION_REPO"></a> [DOCKER\_COMPOSITION\_REPO](#input\_DOCKER\_COMPOSITION\_REPO) | The repo to use to get the docker-composition from | `string` | `"https://github.com/pvarki/docker-rasenmaeher-integration.git"` | no |
-| <a name="input_DOCKER_REPO_TAG"></a> [DOCKER\_REPO\_TAG](#input\_DOCKER\_REPO\_TAG) | The branch/tag in DOCKER\_COMPOSITION\_REPO to use | `string` | `"1.6.0"` | no |
-| <a name="input_DOCKER_TAG_EXTRA"></a> [DOCKER\_TAG\_EXTRA](#input\_DOCKER\_TAG\_EXTRA) | If you want to deploy for example a PR tagged version, messing this up is a good way to make everything take forever | `string` | `""` | no |
+| <a name="input_DOCKER_REPO_TAG"></a> [DOCKER\_REPO\_TAG](#input\_DOCKER\_REPO\_TAG) | The branch/tag in DOCKER\_COMPOSITION\_REPO to use | `string` | `"server_53"` | no |
+| <a name="input_DOCKER_TAG_EXTRA"></a> [DOCKER\_TAG\_EXTRA](#input\_DOCKER\_TAG\_EXTRA) | If you want to deploy for example a PR tagged version, messing this up is a good way to make everything take forever | `string` | `"-118-merge"` | no |
 | <a name="input_EXPIRES"></a> [EXPIRES](#input\_EXPIRES) | ISO 8601 date (yyyy-mm-dd) after which this resource is cleaned up, defaults to 30days from now | `string` | `null` | no |
 | <a name="input_RESOURCE_GROUP_LOCATION"></a> [RESOURCE\_GROUP\_LOCATION](#input\_RESOURCE\_GROUP\_LOCATION) | Location of the resource group. | `string` | `"northeurope"` | no |
 | <a name="input_RESOURCE_GROUP_NAME_PREFIX"></a> [RESOURCE\_GROUP\_NAME\_PREFIX](#input\_RESOURCE\_GROUP\_NAME\_PREFIX) | Prefix of the resource group name that's combined with a random ID so name is unique in your Azure subscription. | `string` | `"rg-miniwerk"` | no |
