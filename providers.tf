@@ -16,10 +16,11 @@ terraform {
     }
   }
 
-  #backend "azurerm" {}
-  backend "local" {}
+  backend "azurerm" {}
+  #backend "local" {}
 }
 
 provider "azurerm" {
   features {}
+  skip_provider_registration = true
 }

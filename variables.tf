@@ -20,7 +20,7 @@ variable "DEPLOYMENT_NAME" {
 }
 
 variable "VITE_ASSET_SET" {
-  default     = "neutral"
+  default     = "fdf"
   description = "Which asset set to use for RM UI"
   type        = string
 }
@@ -43,7 +43,6 @@ variable "DOCKER_COMPOSITION_REPO" {
   type        = string
 }
 
-# FIXME: Update the tag when https://github.com/pvarki/docker-rasenmaeher-integration/pull/95 is merged
 variable "DOCKER_REPO_TAG" {
   default     = "1.6.0" # do not set to "main", nothing guarantees there are no backwards incompatible changes
   description = "The branch/tag in DOCKER_COMPOSITION_REPO to use"

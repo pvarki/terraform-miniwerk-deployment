@@ -137,11 +137,13 @@ No modules.
 | [xkcdpass_generate.kc_keystore_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.kc_ldap_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.kc_truststore_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
+| [xkcdpass_generate.keystore_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.postgres_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.rm_db_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.tak_db_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.tak_jks1_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.tak_jks2_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
+| [xkcdpass_generate.trust_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [azurerm_dns_zone.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/dns_zone) | data source |
 
 ## Inputs
@@ -157,7 +159,7 @@ No modules.
 | <a name="input_RESOURCE_GROUP_LOCATION"></a> [RESOURCE\_GROUP\_LOCATION](#input\_RESOURCE\_GROUP\_LOCATION) | Location of the resource group. | `string` | `"northeurope"` | no |
 | <a name="input_RESOURCE_GROUP_NAME_PREFIX"></a> [RESOURCE\_GROUP\_NAME\_PREFIX](#input\_RESOURCE\_GROUP\_NAME\_PREFIX) | Prefix of the resource group name that's combined with a random ID so name is unique in your Azure subscription. | `string` | `"rg-miniwerk"` | no |
 | <a name="input_SSH_PUBLIC_KEY"></a> [SSH\_PUBLIC\_KEY](#input\_SSH\_PUBLIC\_KEY) | RSA (Azure does not support Elliptic Curve keys) Public key for admin SSH-connections (required) | `string` | n/a | yes |
-| <a name="input_VITE_ASSET_SET"></a> [VITE\_ASSET\_SET](#input\_VITE\_ASSET\_SET) | Which asset set to use for RM UI | `string` | `"neutral"` | no |
+| <a name="input_VITE_ASSET_SET"></a> [VITE\_ASSET\_SET](#input\_VITE\_ASSET\_SET) | Which asset set to use for RM UI | `string` | `"fdf"` | no |
 | <a name="input_VM_SIZE"></a> [VM\_SIZE](#input\_VM\_SIZE) | The SKU which should be used for this Virtual Machine, e.g. Standard\_B4ms | `string` | `"Standard_B4ms"` | no |
 | <a name="input_ZONE_DNS_NAME"></a> [ZONE\_DNS\_NAME](#input\_ZONE\_DNS\_NAME) | DNS Zone to place mumbler server under | `string` | `"solution.dev.pvarki.fi"` | no |
 | <a name="input_ZONE_RESOURCE_GROUP"></a> [ZONE\_RESOURCE\_GROUP](#input\_ZONE\_RESOURCE\_GROUP) | Resource group where the DNS zone resides | `string` | `"FDF-PVARKI-SOLUTION-static"` | no |
