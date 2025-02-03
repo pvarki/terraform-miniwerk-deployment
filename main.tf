@@ -163,6 +163,31 @@ resource "azurerm_dns_a_record" "mtls_fake" {
   }
 }
 
+resource "azurerm_dns_a_record" "bl" {
+  name                = "bl.${local.DEPLOYMENT_NAME}"
+  zone_name           = data.azurerm_dns_zone.this.name
+  resource_group_name = data.azurerm_dns_zone.this.resource_group_name
+  ttl                 = 300
+  target_resource_id  = azurerm_public_ip.this.id
+  tags = {
+    "fi.fdf.pilvi.expires" : local.expires
+    backup = "nobackup"
+  }
+}
+
+resource "azurerm_dns_a_record" "mtls_bl" {
+  name                = "mtls.bl.${local.DEPLOYMENT_NAME}"
+  zone_name           = data.azurerm_dns_zone.this.name
+  resource_group_name = data.azurerm_dns_zone.this.resource_group_name
+  ttl                 = 300
+  target_resource_id  = azurerm_public_ip.this.id
+  tags = {
+    "fi.fdf.pilvi.expires" : local.expires
+    backup = "nobackup"
+  }
+}
+
+
 resource "azurerm_dns_a_record" "kc" {
   name                = "kc.${local.DEPLOYMENT_NAME}"
   zone_name           = data.azurerm_dns_zone.this.name

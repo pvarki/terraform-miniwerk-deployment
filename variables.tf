@@ -43,9 +43,8 @@ variable "DOCKER_COMPOSITION_REPO" {
   type        = string
 }
 
-# FIXME: Update the tag when https://github.com/pvarki/docker-rasenmaeher-integration/pull/95 is merged
 variable "DOCKER_REPO_TAG" {
-  default     = "1.6.0" # do not set to "main", nothing guarantees there are no backwards incompatible changes
+  default     = "1.7.0" # do not set to "main", nothing guarantees there are no backwards incompatible changes
   description = "The branch/tag in DOCKER_COMPOSITION_REPO to use"
   type        = string
 }
