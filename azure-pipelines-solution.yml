@@ -25,6 +25,9 @@ parameters:
 - name: DOCKER_REPO_TAG
   type: string
   default: false
+- name: DOCKER_TAG_EXTRA
+  type: string
+  default: false
 - name: VM_SIZE
   type: string
   default: false
@@ -36,12 +39,6 @@ parameters:
   default: "solution.dev.pvarki.fi"
 - name: CERTBOT_EMAIL
   type: string
-  default: false
-- name: KEYCLOAK_HTTPS_KEY_STORE_PASSWORD
-  type: string 
-  default: false
-- name: KEYCLOAK_HTTPS_TRUST_STORE_PASSWORD
-  type: string 
   default: false
 - name: WORKSPACE_NAME
   type: string
@@ -109,7 +106,7 @@ stages:
               workingDirectory: $(System.DefaultWorkingDirectory)
             env:
               GitHubToken: $(serviceConnection.github_connector.auth.token)
-              
+
   - stage: destroy_resources
     displayName: Destroy miniwerk resources
     jobs:
