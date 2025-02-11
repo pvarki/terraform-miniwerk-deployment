@@ -75,7 +75,7 @@ variable "CERTBOT_EMAIL" {
 }
 
 variable "DOCKER_TAG_EXTRA" {
-  default     = "-118-merge"
+  default     = ""
   description = "If you want to deploy for example a PR tagged version, messing this up is a good way to make everything take forever"
   type        = string
 }
