@@ -20,7 +20,7 @@ variable "DEPLOYMENT_NAME" {
 }
 
 variable "VITE_ASSET_SET" {
-  default     = "neutral"
+  default     = "fdf"
   description = "Which asset set to use for RM UI"
   type        = string
 }
@@ -52,6 +52,12 @@ variable "DOCKER_REPO_TAG" {
 variable "VM_SIZE" {
   default     = "Standard_B4ms"
   description = "The SKU which should be used for this Virtual Machine, e.g. Standard_B4ms"
+  type        = string
+}
+
+variable "VM_DISK_SIZE" {
+  default     = "30"
+  description = "Disk size for VM"
   type        = string
 }
 
