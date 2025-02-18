@@ -160,6 +160,7 @@ No modules.
 | <a name="input_RESOURCE_GROUP_NAME_PREFIX"></a> [RESOURCE\_GROUP\_NAME\_PREFIX](#input\_RESOURCE\_GROUP\_NAME\_PREFIX) | Prefix of the resource group name that's combined with a random ID so name is unique in your Azure subscription. | `string` | `"rg-miniwerk"` | no |
 | <a name="input_SSH_PUBLIC_KEY"></a> [SSH\_PUBLIC\_KEY](#input\_SSH\_PUBLIC\_KEY) | RSA (Azure does not support Elliptic Curve keys) Public key for admin SSH-connections (required) | `string` | n/a | yes |
 | <a name="input_VITE_ASSET_SET"></a> [VITE\_ASSET\_SET](#input\_VITE\_ASSET\_SET) | Which asset set to use for RM UI | `string` | `"neutral"` | no |
+| <a name="input_VM_DISK_SIZE"></a> [VM\_DISK\_SIZE](#input\_VM\_DISK\_SIZE) | Disk size for VM | `string` | `"30"` | no |
 | <a name="input_VM_SIZE"></a> [VM\_SIZE](#input\_VM\_SIZE) | The SKU which should be used for this Virtual Machine, e.g. Standard\_B4ms | `string` | `"Standard_B4ms"` | no |
 | <a name="input_ZONE_DNS_NAME"></a> [ZONE\_DNS\_NAME](#input\_ZONE\_DNS\_NAME) | DNS Zone to place mumbler server under | `string` | `"solution.dev.pvarki.fi"` | no |
 | <a name="input_ZONE_RESOURCE_GROUP"></a> [ZONE\_RESOURCE\_GROUP](#input\_ZONE\_RESOURCE\_GROUP) | Resource group where the DNS zone resides | `string` | `"FDF-PVARKI-SOLUTION-static"` | no |

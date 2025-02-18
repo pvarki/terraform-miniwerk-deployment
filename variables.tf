@@ -55,6 +55,12 @@ variable "VM_SIZE" {
   type        = string
 }
 
+variable "VM_DISK_SIZE" {
+  default     = "30"
+  description = "Disk size for VM"
+  type        = string
+}
+
 variable "ZONE_RESOURCE_GROUP" {
   default     = "FDF-PVARKI-SOLUTION-static"
   description = "Resource group where the DNS zone resides"
