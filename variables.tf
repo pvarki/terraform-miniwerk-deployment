@@ -45,7 +45,7 @@ variable "DOCKER_COMPOSITION_REPO" {
 
 variable "DOCKER_REPO_TAG" {
   default     = "1.7.3" # do not set to "main", nothing guarantees there are no backwards incompatible changes
-  description = "The branch/tag in DOCKER_COMPOSITION_REPO to use"
+  description = "The repository branch/tag in DOCKER_COMPOSITION_REPO to use. Defaults to latest version tag."
   type        = string
 }
 
@@ -81,6 +81,6 @@ variable "CERTBOT_EMAIL" {
 
 variable "DOCKER_TAG_EXTRA" {
   default     = ""
-  description = "If you want to deploy for example a PR tagged version, messing this up is a good way to make everything take forever"
+  description = "In special cases, use this to get a specific commit from the given branch, e.g. for pull request #135 `-135-merge`. N.B. The leading dash is significant!"
   type        = string
 }
