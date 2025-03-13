@@ -5,6 +5,9 @@ pool:
   vmImage: ubuntu-latest
 
 parameters:
+- name: SUBSCRIPTION_ID
+  type: string
+  default: false
 - name: SSH_PUBLIC_KEY
   type: string
 - name: EXPIRES

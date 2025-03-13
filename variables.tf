@@ -1,3 +1,9 @@
+variable "SUBSCRIPTION_ID" {
+  description = "Azure subscription ID"
+  default     = "3847d867-f225-4c32-9e3e-38573a7bc5fd"
+  type        = string
+}
+
 variable "SSH_PUBLIC_KEY" {
   description = "RSA (Azure does not support Elliptic Curve keys) Public key for admin SSH-connections (required)"
   type        = string
