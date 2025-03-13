@@ -79,7 +79,7 @@ resource "azurerm_public_ip" "this" {
   name                = "${local.DEPLOYMENT_NAME}-pip"
   location            = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
   tags = {
     "fi.fdf.pilvi.expires" : local.expires
     backup = "nobackup"

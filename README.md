@@ -95,7 +95,7 @@ should be able to handle by itself.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.2.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~>3.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~>4.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | ~>3.0 |
 | <a name="requirement_xkcdpass"></a> [xkcdpass](#requirement\_xkcdpass) | ~>1.0 |
 
@@ -103,8 +103,8 @@ should be able to handle by itself.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.82.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.5.1 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 4.22.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.7.1 |
 | <a name="provider_xkcdpass"></a> [xkcdpass](#provider\_xkcdpass) | 1.0.0 |
 
 ## Modules
@@ -159,6 +159,7 @@ No modules.
 | <a name="input_RESOURCE_GROUP_LOCATION"></a> [RESOURCE\_GROUP\_LOCATION](#input\_RESOURCE\_GROUP\_LOCATION) | Location of the resource group. | `string` | `"northeurope"` | no |
 | <a name="input_RESOURCE_GROUP_NAME_PREFIX"></a> [RESOURCE\_GROUP\_NAME\_PREFIX](#input\_RESOURCE\_GROUP\_NAME\_PREFIX) | Prefix of the resource group name that's combined with a random ID so name is unique in your Azure subscription. | `string` | `"rg-miniwerk"` | no |
 | <a name="input_SSH_PUBLIC_KEY"></a> [SSH\_PUBLIC\_KEY](#input\_SSH\_PUBLIC\_KEY) | RSA (Azure does not support Elliptic Curve keys) Public key for admin SSH-connections (required) | `string` | n/a | yes |
+| <a name="input_SUBSCRIPTION_ID"></a> [SUBSCRIPTION\_ID](#input\_SUBSCRIPTION\_ID) | Azure subscription ID | `string` | `"3847d867-f225-4c32-9e3e-38573a7bc5fd"` | no |
 | <a name="input_VITE_ASSET_SET"></a> [VITE\_ASSET\_SET](#input\_VITE\_ASSET\_SET) | Which asset set to use for RM UI | `string` | `"neutral"` | no |
 | <a name="input_VM_DISK_SIZE"></a> [VM\_DISK\_SIZE](#input\_VM\_DISK\_SIZE) | Disk size for VM | `string` | `"30"` | no |
 | <a name="input_VM_SIZE"></a> [VM\_SIZE](#input\_VM\_SIZE) | The SKU which should be used for this Virtual Machine, e.g. Standard\_B4ms | `string` | `"Standard_B4ms"` | no |
