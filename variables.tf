@@ -1,3 +1,9 @@
+variable "SUBSCRIPTION_ID" {
+  description = "Azure subscription ID"
+  default     = "3847d867-f225-4c32-9e3e-38573a7bc5fd"
+  type        = string
+}
+
 variable "SSH_PUBLIC_KEY" {
   description = "RSA (Azure does not support Elliptic Curve keys) Public key for admin SSH-connections (required)"
   type        = string
@@ -20,7 +26,7 @@ variable "DEPLOYMENT_NAME" {
 }
 
 variable "VITE_ASSET_SET" {
-  default     = "neutral"
+  default     = "fdf"
   description = "Which asset set to use for RM UI"
   type        = string
 }
