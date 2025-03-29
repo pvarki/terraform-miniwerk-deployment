@@ -112,7 +112,7 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
-                MW_DNS=`jq -cr .dns_name.value $jsonOutputVariablesPath`
+                MW_DNS=`echo $jsonOutputVariablesPath | jq -cr .dns_name.value`
                 echo $jsonOutputVariablesPath
                 echo $MW_DNS
                 echo "$sshkeypriv" > ~/.ssh/sshkey
