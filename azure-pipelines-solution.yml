@@ -112,7 +112,7 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
-                MW_DNS=`jq .dns_name.value $(jsonOutputVariablesPath)`
+                MW_DNS=`jq .dns_name.value ${{jsonOutputVariablesPath}}`
                 watch -g curl -s https://$MW_DNS/api/v1/healthcheck/services | jq ."
                 echo "$(sshkeypriv)" > ~/.ssh/sshkey
                 chmod 400 ~/.ssh/sshkey
