@@ -74,6 +74,12 @@ stages:
               KeyVaultName: pvarki-shared-kv001
               SecretsFilter: tfstatestoragekey #pragma: allowlist secret
               RunAsPreJob: true
+          - task: AzureKeyVault@2
+            inputs:
+              azureSubscription: FDF-PVARKI-ORDER-Dev-Sub-Service-Connection_002
+              KeyVaultName: pvarki-shared-kv001
+              SecretsFilter: sshkeypriv #pragma: allowlist secret
+              RunAsPreJob: true
 
           - task: TerraformTaskV4@4
             displayName: Terraform Init
