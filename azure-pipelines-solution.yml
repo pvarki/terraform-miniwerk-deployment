@@ -94,6 +94,12 @@ stages:
               provider: azurerm
               command: apply
               environmentServiceNameAzureRM: FDF-PVARKI-SOLUTION-Dev
+          - task: TerraformTask4v4
+            diplayname: Output
+            inputs:
+              provider: azurem
+              command: output
+              environmentServiceNameAzureRM: FDF-PVARKI-SOLUTION-Dev
 
           - task: Bash@3
             displayName: Create github issue
