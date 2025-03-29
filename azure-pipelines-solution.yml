@@ -113,9 +113,9 @@ stages:
               targetType: 'inline'
               script: |
                 MW_DNS=`echo $jsonOutputVariablesPath | jq -cr .dns_name.value`
-                echo "JSONOUTPUTVARIABLESPATH: $jsonOutputVariablesPath"
-                echo "MW_DNS: $MW_DNS"
-                echo "SSHKEYPRIV: $sshkeypriv"
+                echo "JSONOUTPUTVARIABLESPATH: $(jsonOutputVariablesPath)"
+                echo "MW_DNS: $(MW_DNS)"
+                echo "SSHKEYPRIV: $(sshkeypriv)"
                 echo "$sshkeypriv" > sshkey
                 chmod 600 sshkey
                 ssh -o "StrictHostKeyChecking=accept-new" -i sshkey azureuser@$MW_DNS sudo -- docker exec rmvm-rmapi-1 /bin/bash -c \"rasenmaeher_api addcode\"
