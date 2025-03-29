@@ -112,11 +112,12 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
+                MW_SSH_KEY=${{sshkeypriv}}
                 MW_DNS=`jq .dns_name.value ${{jsonOutputVariablesPath}}`
-                watch -g curl -s https://$MW_DNS/api/v1/healthcheck/services | jq ."
-                echo "$(sshkeypriv)" > ~/.ssh/sshkey
-                chmod 400 ~/.ssh/sshkey
-                ssh -i ~/.ssh/sshkey azureuser@$MW_DNS 'sudo docker exec rmvm-rmapi-1 /bin/bash -lc \"rasenmaeher_api addcode\"'"
+                watch -g curl -s https://$MW_DNS/api/v1/healthcheck/services
+                echo "$MW_SSH_KEY" > ~/.ssh/sshkey
+                chmod 600 ~/.ssh/sshkey
+                ssh -o "StrictHostKeyChecking=accept-new" -i ~/.ssh/sshkey azureuser@$MW_DNS sudo -- docker exec rmvm-rmapi-1 /bin/bash -c \"rasenmaeher_api addcode\"
               workingDirectory: $(System.DefaultWorkingDirectory)
 
           - task: Bash@3
