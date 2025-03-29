@@ -95,7 +95,7 @@ stages:
               command: apply
               environmentServiceNameAzureRM: FDF-PVARKI-SOLUTION-Dev
           - task: TerraformTaskV4@4
-            diplayName: Output
+            displayName: Output
             inputs:
               provider: azurerm
               command: output
