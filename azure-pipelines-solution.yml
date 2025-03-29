@@ -101,6 +101,7 @@ stages:
               command: apply
               environmentServiceNameAzureRM: FDF-PVARKI-SOLUTION-Dev
           - task: TerraformTaskV4@4
+            name: terraout
             displayName: Output
             inputs:
               provider: azurerm
@@ -109,14 +110,15 @@ stages:
 
           - task: Bash@3
             displayName: Testing
+            env:
+              jsonOutputVariablesPath: variables['terraout.jsonOutputVariablesPath']
             inputs:
               targetType: 'inline'
               script: |
                 MW_DNS=`echo $jsonOutputVariablesPath | jq -cr .dns_name.value`
-                echo "JSONOUTPUTVARIABLESPATH: $(jsonOutputVariablesPath)"
-                echo "MW_DNS: $(MW_DNS)"
-                echo "SSHKEYPRIV: $(sshkeypriv)"
-                echo "$sshkeypriv" > sshkey
+                echo "JSONOUTPUTVARIABLESPATH: $jsonOutputVariablesPath"
+                echo "MW_DNS: $MW_DNS"
+                echo "$(sshkeypriv)" > sshkey
                 chmod 600 sshkey
                 ssh -o "StrictHostKeyChecking=accept-new" -i sshkey azureuser@$MW_DNS sudo -- docker exec rmvm-rmapi-1 /bin/bash -c \"rasenmaeher_api addcode\"
               workingDirectory: $(System.DefaultWorkingDirectory)
