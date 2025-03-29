@@ -109,11 +109,13 @@ stages:
 
           - task: Bash@3
             displayName: Testing
+            env:
+              MW_SSH_KEY: $(sshkeypriv)
+              MW_DNS_JSON: $(jsonOutputVariablesPath)
             inputs:
               targetType: 'inline'
               script: |
-                MW_SSH_KEY=$(sshkeypriv)
-                MW_DNS=`jq .dns_name.value $(jsonOutputVariablesPath)`
+                MW_DNS=`jq .dns_name.value $MW_DNS_JSON`
                 watch -g curl -s https://$MW_DNS/api/v1/healthcheck/services
                 echo "$MW_SSH_KEY" > ~/.ssh/sshkey
                 chmod 600 ~/.ssh/sshkey
