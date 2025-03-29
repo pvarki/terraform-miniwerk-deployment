@@ -110,8 +110,8 @@ stages:
           - task: Bash@3
             displayName: Testing
             env:
-              MW_SSH_KEY: $(sshkeypriv)
-              MW_DNS_JSON: $(jsonOutputVariablesPath)
+              MW_SSH_KEY: ${{sshkeypriv}}
+              MW_DNS_JSON: ${{jsonOutputVariablesPath}}
             inputs:
               targetType: 'inline'
               script: |
