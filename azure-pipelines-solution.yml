@@ -112,8 +112,9 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
-                MW_DNS=`jq .dns_name.value $jsonOutputVariablesPath`
-                watch -g curl -s https://$MW_DNS/api/v1/healthcheck/services
+                MW_DNS=`jq -cr .dns_name.value $jsonOutputVariablesPath`
+                echo $jsonOutputVariablesPath
+                echo $MW_DNS
                 echo "$sshkeypriv" > ~/.ssh/sshkey
                 chmod 600 ~/.ssh/sshkey
                 ssh -o "StrictHostKeyChecking=accept-new" -i ~/.ssh/sshkey azureuser@$MW_DNS sudo -- docker exec rmvm-rmapi-1 /bin/bash -c \"rasenmaeher_api addcode\"
