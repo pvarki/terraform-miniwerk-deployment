@@ -304,7 +304,7 @@ resource "azurerm_network_security_group" "this" {
 
   security_rule {
     name                       = "AllowBL"
-    priority                   = 1007
+    priority                   = 1008
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
