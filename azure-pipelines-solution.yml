@@ -110,8 +110,9 @@ stages:
 
           - task: Bash@3
             displayName: Testing
-            env:
-              jsonOutputVariablesPath: variables['terraout.jsonOutputVariablesPath']
+            variables:
+              #jsonOutputVariablesPath: variables['terraout.jsonOutputVariablesPath']
+              jsonOutPutVariablePath: $[ dependencies.terraout.outputs['setVarStep.dns_name-value'] ]
             inputs:
               targetType: 'inline'
               script: |
