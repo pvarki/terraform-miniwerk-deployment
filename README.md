@@ -81,7 +81,7 @@ We use [pre-commit framework][pc] for various things, most notably it will autog
 the docs below, you need to run `pre-commit run --all-files` before committing to
 make sure everything is ok and up-to-date.
 
-Remember to also enable pre-commit on your local checkout with `pre-commit install`
+Remember to also enable pre-commit on your local checkout with `pre-commit install --install-hooks`
 
 You will need `terraform-docs` and `tflint` installed in PATH, everything else pre-commit
 should be able to handle by itself.
