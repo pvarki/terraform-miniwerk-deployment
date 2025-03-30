@@ -10,6 +10,10 @@ resource "xkcdpass_generate" "rm_db_pass" {
   length = 6
 }
 
+resource "xkcdpass_generate" "bl_db_pass" {
+  length = 6
+}
+
 resource "xkcdpass_generate" "kc_db_pass" {
   length = 6
 }
@@ -298,6 +302,18 @@ resource "azurerm_network_security_group" "this" {
     destination_address_prefix = "*"
   }
 
+  security_rule {
+    name                       = "AllowBL"
+    priority                   = 1008
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "4666"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
   tags = {
     "fi.fdf.pilvi.expires" : local.expires
     backup = "nobackup"
@@ -363,6 +379,7 @@ resource "azurerm_linux_virtual_machine" "this" {
     DOCKER_TAG_EXTRA                    = var.DOCKER_TAG_EXTRA
     DEPLOYMENT_NAME                     = local.DEPLOYMENT_NAME
     RM_DATABASE_PASSWORD                = xkcdpass_generate.rm_db_pass.result
+    BL_DATABASE_PASSWORD                = xkcdpass_generate.bl_db_pass.result
     KEYCLOAK_DATABASE_PASSWORD          = xkcdpass_generate.kc_db_pass.result
     KEYCLOAK_ADMIN_PASSWORD             = xkcdpass_generate.kc_admin_pass.result
     KEYCLOAK_HTTPS_KEY_STORE_PASSWORD   = xkcdpass_generate.kc_keystore_pass.result
