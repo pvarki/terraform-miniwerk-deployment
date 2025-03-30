@@ -134,6 +134,7 @@ No modules.
 | [azurerm_subnet.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
 | [azurerm_virtual_network.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network) | resource |
 | [random_pet.rg_name](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet) | resource |
+| [xkcdpass_generate.bl_db_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.kc_admin_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.kc_db_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
 | [xkcdpass_generate.kc_keystore_pass](https://registry.terraform.io/providers/advian-oss/xkcdpass/latest/docs/resources/generate) | resource |
