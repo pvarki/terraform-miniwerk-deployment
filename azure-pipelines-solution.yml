@@ -112,7 +112,7 @@ stages:
             displayName: Testing
             env:
               #jsonOutputVariablesPath: variables['terraout.jsonOutputVariablesPath']
-              jsonOutPutVariablePath: $[ dependencies.terraout.outputs['setVarStep.dns_name-value'] ]
+              jsonOutputVariablePath: $[ dependencies.terraout.outputs['setVarStep.dns_name-value'] ]
             inputs:
               targetType: 'inline'
               script: |
