@@ -89,3 +89,5 @@ dcup || dcup || dcup
 echo "** Check API health"
 curl -s https://${DEPLOYMENT_DNS}/api/v1/healthcheck/services | jq
 echo "DONE"
+
+apt-get dist-upgrade
