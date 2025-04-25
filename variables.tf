@@ -50,7 +50,7 @@ variable "DOCKER_COMPOSITION_REPO" {
 }
 
 variable "DOCKER_REPO_TAG" {
-  default     = "1.8.0" # do not set to "main", nothing guarantees there are no backwards incompatible changes
+  default     = "1.8.1" # do not set to "main", nothing guarantees there are no backwards incompatible changes
   description = "The repository branch/tag in DOCKER_COMPOSITION_REPO to use. Defaults to latest version tag."
   type        = string
 }
