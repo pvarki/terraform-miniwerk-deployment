@@ -111,17 +111,18 @@ stages:
           - task: Bash@3
             displayName: Testing
             env:
-              #jsonOutputVariablesPath: variables['terraout.jsonOutputVariablesPath']
-              jsonOutputVariablePath: $[ dependencies.terraout.outputs['setVarStep.dns_name-value'] ]
+              # Use macro syntax to grab the JSON-file path from the previous step:
+              JSON_OUTPUT_PATH: $(terraout.jsonOutputVariablesPath)
             inputs:
               targetType: 'inline'
               script: |
-                MW_DNS=`echo $jsonOutputVariablesPath | jq -cr .dns_name.value`
-                echo "JSONOUTPUTVARIABLESPATH: $jsonOutputVariablesPath"
+                echo "Terraform outputs JSON file: $JSON_OUTPUT_PATH"
+                # Read and parse the JSON file—don't echo the path into jq!
+                TF_JSON=$(cat "$JSON_OUTPUT_PATH")
+                # Extract the 'dns_name' output value:
+                MW_DNS=$(echo "$TF_JSON" | jq -cr .dns_name.value)
                 echo "MW_DNS: $MW_DNS"
-                echo "$(sshkeypriv)" > sshkey
-                chmod 600 sshkey
-                ssh -o "StrictHostKeyChecking=accept-new" -i sshkey azureuser@$MW_DNS sudo -- docker exec rmvm-rmapi-1 /bin/bash -c \"rasenmaeher_api addcode\"
+                # (now you can use $MW_DNS as before…)
               workingDirectory: $(System.DefaultWorkingDirectory)
 
           - task: Bash@3
