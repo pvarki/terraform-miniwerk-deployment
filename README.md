@@ -154,7 +154,7 @@ No modules.
 | <a name="input_CERTBOT_EMAIL"></a> [CERTBOT\_EMAIL](#input\_CERTBOT\_EMAIL) | Email address to send certificate expiration notifications. | `string` | `"benjam.gronmark_arkiproj@hotmail.com"` | no |
 | <a name="input_DEPLOYMENT_NAME"></a> [DEPLOYMENT\_NAME](#input\_DEPLOYMENT\_NAME) | Set DNS name, if not set will be automatically generated | `string` | `null` | no |
 | <a name="input_DOCKER_COMPOSITION_REPO"></a> [DOCKER\_COMPOSITION\_REPO](#input\_DOCKER\_COMPOSITION\_REPO) | The repo to use to get the docker-composition from | `string` | `"https://github.com/pvarki/docker-rasenmaeher-integration.git"` | no |
-| <a name="input_DOCKER_REPO_TAG"></a> [DOCKER\_REPO\_TAG](#input\_DOCKER\_REPO\_TAG) | The repository branch/tag in DOCKER\_COMPOSITION\_REPO to use. Defaults to latest version tag. | `string` | `"1.9.0"` | no |
+| <a name="input_DOCKER_REPO_TAG"></a> [DOCKER\_REPO\_TAG](#input\_DOCKER\_REPO\_TAG) | The repository branch/tag in DOCKER\_COMPOSITION\_REPO to use. Defaults to latest version tag. | `string` | `"1.8.1"` | no |
 | <a name="input_DOCKER_TAG_EXTRA"></a> [DOCKER\_TAG\_EXTRA](#input\_DOCKER\_TAG\_EXTRA) | In special cases, use this to get a specific commit from the given branch, e.g. for pull request #135 `-135-merge`. N.B. The leading dash is significant! | `string` | `""` | no |
 | <a name="input_EXPIRES"></a> [EXPIRES](#input\_EXPIRES) | ISO 8601 date (yyyy-mm-dd) after which this resource is cleaned up, defaults to 30days from now | `string` | `null` | no |
 | <a name="input_RESOURCE_GROUP_LOCATION"></a> [RESOURCE\_GROUP\_LOCATION](#input\_RESOURCE\_GROUP\_LOCATION) | Location of the resource group. | `string` | `"northeurope"` | no |
