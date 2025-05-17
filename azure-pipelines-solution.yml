@@ -54,6 +54,9 @@ parameters:
 - name: CREATE
   type: boolean
   default: true
+- name: DEBUG
+  type: boolean
+  default: false
 
 
 variables:
