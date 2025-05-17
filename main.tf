@@ -48,7 +48,8 @@ resource "xkcdpass_generate" "tak_jks2_pass" {
 
 locals {
   today           = timestamp()
-  one_month_later = timeadd(local.today, "720h")
+  expiration_h    = var.DEBUG == "true" ? "48h" : "720h"
+  one_month_later = timeadd(local.today, local.expiration_h)
   expires         = var.EXPIRES != null ? var.EXPIRES : formatdate("YYYY-MM-DD", local.one_month_later)
   DEPLOYMENT_NAME = var.DEPLOYMENT_NAME != null ? var.DEPLOYMENT_NAME : random_pet.rg_name.id
 }

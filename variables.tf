@@ -90,3 +90,9 @@ variable "DOCKER_TAG_EXTRA" {
   description = "In special cases, use this to get a specific commit from the given branch, e.g. for pull request #135 `-135-merge`. N.B. The leading dash is significant!"
   type        = string
 }
+
+variable "DEBUG" {
+  default     = false
+  description = "Enable debug mode (true/false) with shorter expiration tag in Azure"
+  type        = string
+}

@@ -152,6 +152,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_CERTBOT_EMAIL"></a> [CERTBOT\_EMAIL](#input\_CERTBOT\_EMAIL) | Email address to send certificate expiration notifications. | `string` | `"benjam.gronmark_arkiproj@hotmail.com"` | no |
+| <a name="input_DEBUG"></a> [DEBUG](#input\_DEBUG) | Enable debug mode (true/false) with shorter expiration tag in Azure | `string` | `false` | no |
 | <a name="input_DEPLOYMENT_NAME"></a> [DEPLOYMENT\_NAME](#input\_DEPLOYMENT\_NAME) | Set DNS name, if not set will be automatically generated | `string` | `null` | no |
 | <a name="input_DOCKER_COMPOSITION_REPO"></a> [DOCKER\_COMPOSITION\_REPO](#input\_DOCKER\_COMPOSITION\_REPO) | The repo to use to get the docker-composition from | `string` | `"https://github.com/pvarki/docker-rasenmaeher-integration.git"` | no |
 | <a name="input_DOCKER_REPO_TAG"></a> [DOCKER\_REPO\_TAG](#input\_DOCKER\_REPO\_TAG) | The repository branch/tag in DOCKER\_COMPOSITION\_REPO to use. Defaults to latest version tag. | `string` | `"1.8.1"` | no |
