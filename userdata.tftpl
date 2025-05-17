@@ -90,4 +90,6 @@ echo "** Check API health"
 curl -s https://${DEPLOYMENT_DNS}/api/v1/healthcheck/services | jq
 echo "DONE"
 
+alias admin_key='sudo docker exec -it rmvm-rmapi-1 /bin/bash -c "rasenmaeher_api addcode"'
+
 apt-get -y dist-upgrade
