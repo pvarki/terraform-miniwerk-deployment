@@ -93,6 +93,6 @@ variable "DOCKER_TAG_EXTRA" {
 
 variable "DEBUG" {
   default     = false
-  description = "Enable debug mode with shorter expiration tag"
-  type        = bool
+  description = "Enable debug mode (true/false) with shorter expiration tag"
+  type        = string
 }
