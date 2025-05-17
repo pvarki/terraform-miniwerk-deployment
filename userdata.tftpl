@@ -1,6 +1,10 @@
 #!/bin/bash
 set -euo pipefail
 export DEBIAN_FRONTEND=noninteractive
+
+# Create alias for first admin key creation
+echo "alias admin_key='sudo docker exec -it rmvm-rmapi-1 /bin/bash -c \"rasenmaeher_api addcode\"'" >> /home/azureuser/.bashrc
+
 apt-get update
 apt-get install -y \
   apt-transport-https \
@@ -89,7 +93,5 @@ dcup || dcup || dcup
 echo "** Check API health"
 curl -s https://${DEPLOYMENT_DNS}/api/v1/healthcheck/services | jq
 echo "DONE"
-
-alias admin_key='sudo docker exec -it rmvm-rmapi-1 /bin/bash -c "rasenmaeher_api addcode"'
 
 apt-get -y dist-upgrade
