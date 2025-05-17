@@ -93,6 +93,6 @@ variable "DOCKER_TAG_EXTRA" {
 
 variable "DEBUG" {
   default     = false
-  description = "Enable debug mode (true/false) with shorter expiration tag"
+  description = "Enable debug mode (true/false) with shorter expiration tag in Azure"
   type        = string
 }
